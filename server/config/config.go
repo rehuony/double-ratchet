@@ -3,11 +3,11 @@ package config
 import "os"
 
 var (
-	DB_USER     = getEnv("DB_USER", "root")
-	DB_PORT     = getEnv("DB_PORT", "3306")
-	DB_HOST     = getEnv("DB_HOST", "localhost")
-	DB_SECRET   = getEnv("DB_SECRET", "password")
-	DB_DATABASE = getEnv("DB_DATABASE", "double_ratchet")
+	MYSQL_USER     = getEnv("MYSQL_USER", "root")
+	MYSQL_PORT     = getEnv("MYSQL_PORT", "3306")
+	MYSQL_HOST     = getEnv("MYSQL_HOST", "localhost")
+	MYSQL_SECRET   = getEnv("MYSQL_SECRET", "password")
+	MYSQL_DATABASE = getEnv("MYSQL_DATABASE", "double_ratchet")
 
 	JWT_SERRET = getEnv("JWT_SECRET", "password")
 )

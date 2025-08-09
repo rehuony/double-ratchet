@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router";
 
-import { VITE_BASE_URL, USER_INFOR_STORAGE } from "../config/config";
+import { VITE_BASE_URL, VITE_USER_INFOR } from "../config/config";
 import { showNoticeCard } from "../utils/toaster";
 
 export default function AuthPage() {
@@ -10,7 +10,7 @@ export default function AuthPage() {
 
 	useEffect(() => {
 		const validate = async () => {
-			const userInforString = localStorage.getItem(USER_INFOR_STORAGE);
+			const userInforString = localStorage.getItem(VITE_USER_INFOR);
 
 			if (!userInforString) {
 				navigate("/auth/login");

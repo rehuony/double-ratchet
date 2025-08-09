@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 
 import FriendListCard from "../components/FriendListCard";
 
-import { USER_INFOR_STORAGE, VITE_WS_URL } from "../config/config";
+import { VITE_USER_INFOR, VITE_WS_URL } from "../config/config";
 import { UserInforContext } from "../context/UserInforContext";
 import {
 	calcSharedSecret,
@@ -66,7 +66,7 @@ export default function ChatPage() {
 
 	useEffect(() => {
 		const initinalUserInfor = async () => {
-			const localStorageData = localStorage.getItem(USER_INFOR_STORAGE);
+			const localStorageData = localStorage.getItem(VITE_USER_INFOR);
 			if (!localStorageData) return;
 			const storageUserInfor = JSON.parse(
 				localStorageData

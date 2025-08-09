@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import FormInputWithIcon from "../components/FormInputWithIcon";
 import LazyUnderlineLink from "../components/LazyUnderlineLink";
 
-import { VITE_BASE_URL, USER_INFOR_STORAGE } from "../config/config";
+import { VITE_BASE_URL, VITE_USER_INFOR } from "../config/config";
 import { checkPassword, checkUsername } from "../utils/check";
 import { calcSecretKey, calcSha256Digest } from "../utils/crypto";
 import { showNoticeCard } from "../utils/toaster";
@@ -50,7 +50,7 @@ export default function LoginPage() {
 
 			navigate("/user/chat");
 			localStorage.setItem(
-				USER_INFOR_STORAGE,
+				VITE_USER_INFOR,
 				JSON.stringify({
 					...data.data,
 					secret_key: secretDigest,

@@ -41,7 +41,7 @@ type Message struct {
 var MDB *gorm.DB
 
 func init() {
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", config.DB_USER, config.DB_SECRET, config.DB_HOST, config.DB_PORT, config.DB_DATABASE)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", config.MYSQL_USER, config.MYSQL_SECRET, config.MYSQL_HOST, config.MYSQL_PORT, config.MYSQL_DATABASE)
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
