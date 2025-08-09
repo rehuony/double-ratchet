@@ -1,0 +1,54 @@
+name: double-ratchet
+
+services:
+  mysql:
+    image: mysql:8.4.6
+    container_name: ${MYSQL_HOST}
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_SECRET}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - production
+
+  server:
+    build:
+      context: ./server
+    container_name: double-ratchet-server
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:10001:8080"
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_SECRET: ${MYSQL_SECRET}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    depends_on:
+      - mysql
+    networks:
+      - production
+
+  client:
+    build:
+      context: ./client
+    container_name: double-ratchet-client
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:10002:80"
+    networks:
+      - production
+
+volumes:
+  mysql-data:
+
+
+networks:
+  production:
+    driver: bridge

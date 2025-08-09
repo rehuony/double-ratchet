@@ -18,18 +18,18 @@
     VITE_BASE_URL=http://localhost:8080
     ```
 
-3.  Create the `.env` file in the server project directory and write the following content
+3.  Create the `.env` file in the root project directory and write the following content
 
     ```ini
+    # JWT Configuration
+    JWT_SECRET=password
+
     # MySQL Configuration
     DB_USER=root
     DB_PORT=3306
     DB_HOST=mysql-server
     DB_SECRET=password
     DB_DATABASE=double_ratchet
-
-    # JWT Configuration
-    JWT_SECRET=password
     ```
 
 4.  Execute `docker compose up -d` to access it through `http://localhost`
