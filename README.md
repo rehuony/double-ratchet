@@ -14,16 +14,19 @@
 
     ```ini
     # Vite Configuration
-    VITE_WS_URL=ws://localhost:8080
-    VITE_BASE_URL=http://localhost:8080
+    VITE_HOST=localhost:8080
+    VITE_ROOT_PATH=/
+    VITE_ENCRYPTED=false
     ```
 
-3.  Create the `.env` file in the root project directory and write the following content
+3.  Modify the `vite.config.ts` file, make sure the value of the `base` field is the same as the value of `VITE_ROOT_PATH` above
+
+4.  Create the `.env` file in the root project directory and write the following content
 
     ```ini
     # JWT Configuration
     JWT_SECRET=password
-
+    
     # MySQL Configuration
     DB_USER=root
     DB_PORT=3306
@@ -32,4 +35,4 @@
     DB_DATABASE=double_ratchet
     ```
 
-4.  Execute `docker compose up -d` to access it through `http://localhost`
+5.  Execute `docker compose up -d` to access it through `http://localhost`

@@ -7,7 +7,7 @@ import FormInputWithIcon from "../components/FormInputWithIcon";
 import LazyUnderlineLink from "../components/LazyUnderlineLink";
 import UploadFileContainer from "../components/UploadFileContainer";
 
-import { VITE_BASE_URL } from "../config/config";
+import { CONFIG_BASE_URL, CONFIG_ROOT_PATH } from "../config/config";
 import { checkPassword, checkUsername } from "../utils/check";
 import {
 	calcSecretKey,
@@ -66,7 +66,7 @@ export default function ForgotPage() {
 			const privateKeyBase64 = arrayBufferToBase64(ciphertext);
 
 			const { data } = await axios.post<InterfaceAuthForgotResponse>(
-				`${VITE_BASE_URL}/api/auth/forgot`,
+				`${CONFIG_BASE_URL}/api/auth/forgot`,
 				{
 					username: username,
 					password: passwordDigest,
@@ -79,7 +79,7 @@ export default function ForgotPage() {
 
 			if (data.code !== 200) throw new Error(data.message);
 
-			navigate("/auth/login");
+			navigate(`${CONFIG_ROOT_PATH}/auth/login`);
 			await showNoticeCard("🎉", "Change Password Success", data.message);
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
@@ -145,7 +145,7 @@ export default function ForgotPage() {
 				</button>
 				<div className="flex items-center justify-center gap-x-2">
 					<p className="select-none">Remembered your password?</p>
-					<LazyUnderlineLink text="Login" link="/auth/login" />
+					<LazyUnderlineLink text="Login" link={`${CONFIG_ROOT_PATH}/auth/login`} />
 				</div>
 			</form>
 		</div>

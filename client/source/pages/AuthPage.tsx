@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router";
 
-import { VITE_BASE_URL, VITE_USER_INFOR } from "../config/config";
+import { CONFIG_BASE_URL, CONFIG_ROOT_PATH, CONFIG_USER_ITEM } from "../config/config";
 import { showNoticeCard } from "../utils/toaster";
 
 export default function AuthPage() {
@@ -10,17 +10,17 @@ export default function AuthPage() {
 
 	useEffect(() => {
 		const validate = async () => {
-			const userInforString = localStorage.getItem(VITE_USER_INFOR);
+			const userInforString = localStorage.getItem(CONFIG_USER_ITEM);
 
 			if (!userInforString) {
-				navigate("/auth/login");
+				navigate(`${CONFIG_ROOT_PATH}/auth/login`);
 				return;
 			}
 
 			const userInfor = JSON.parse(userInforString) as InterfaceStorageUserInfor;
 
 			const { data } = await axios.post<InterfaceAuthValidResponse>(
-				`${VITE_BASE_URL}/api/auth/valid`,
+				`${CONFIG_BASE_URL}/api/auth/valid`,
 				{
 					uuid: userInfor.uuid,
 					username: userInfor.username,
@@ -30,7 +30,7 @@ export default function AuthPage() {
 
 			if (data.code !== 200) throw new Error(data.message);
 
-			navigate("/user/chat");
+			navigate(`${CONFIG_ROOT_PATH}/user/chat`);
 		};
 
 		const timer = setTimeout(async () => {
@@ -38,7 +38,7 @@ export default function AuthPage() {
 				await validate();
 			} catch (error) {
 				localStorage.clear();
-				navigate("/auth/login");
+				navigate(`${CONFIG_ROOT_PATH}/auth/login`);
 				if (axios.isAxiosError(error)) {
 					await showNoticeCard(
 						"❌",

@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 
 import FriendListCard from "../components/FriendListCard";
 
-import { VITE_USER_INFOR, VITE_WS_URL } from "../config/config";
+import { CONFIG_USER_ITEM, CONFIG_WS_URL } from "../config/config";
 import { UserInforContext } from "../context/UserInforContext";
 import {
 	calcSharedSecret,
@@ -66,7 +66,7 @@ export default function ChatPage() {
 
 	useEffect(() => {
 		const initinalUserInfor = async () => {
-			const localStorageData = localStorage.getItem(VITE_USER_INFOR);
+			const localStorageData = localStorage.getItem(CONFIG_USER_ITEM);
 			if (!localStorageData) return;
 			const storageUserInfor = JSON.parse(
 				localStorageData
@@ -103,7 +103,7 @@ export default function ChatPage() {
 
 		const connectWebSocket = () => {
 			const socket = new WebSocket(
-				`${VITE_WS_URL}/api/websocket?token=${userInfor.authorization}`
+				`${CONFIG_WS_URL}/api/websocket?token=${userInfor.authorization}`
 			);
 
 			socket.onopen = () => {
