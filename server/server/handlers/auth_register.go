@@ -4,8 +4,10 @@ import (
 	"crypto/x509"
 	"encoding/base64"
 	"encoding/pem"
+	"fmt"
 	"net/http"
 
+	"double-ratchet-server/config"
 	"double-ratchet-server/database"
 
 	"github.com/gin-gonic/gin"
@@ -82,7 +84,7 @@ func HandleAuthRegister(ctx *gin.Context) {
 		UUID:       uuid.NewString(),
 		Username:   req.Username,
 		Password:   req.Password,
-		AvatarUrl:  "/uploads/avatars/default.png",
+		AvatarUrl:  fmt.Sprintf("%suploads/avatars/default.png", config.ROOT_PATH),
 		PublicKey:  req.PublicKey,
 		PrivateIV:  req.PrivateIV,
 		PrivateKey: req.PrivateKey,

@@ -24,6 +24,9 @@
 4.  Create the `.env` file in the root project directory and write the following content
 
     ```ini
+    # Subdirectory of nginx
+    ROOT_PATH='/'
+    
     # JWT Configuration
     JWT_SECRET=password
     
@@ -35,4 +38,6 @@
     DB_DATABASE=double_ratchet
     ```
 
-5.  Execute `docker compose up -d` to access it through `http://localhost`
+5.  Please make sure that the content of `ROOT_PATH` is the same as the content of `VITE_ROOT_PATH` mentioned above
+
+6.  Execute `docker compose up -d` to access it through `http://localhost`

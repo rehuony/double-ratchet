@@ -3,6 +3,7 @@ package config
 import "os"
 
 var (
+	ROOT_PATH = getEnv("ROOT_PATH", "/")
 	JWT_SERRET = getEnv("JWT_SECRET", "password")
 
 	MYSQL_USER     = getEnv("MYSQL_USER", "root")
