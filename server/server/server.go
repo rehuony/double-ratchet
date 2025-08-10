@@ -12,7 +12,7 @@ import (
 var ServiceServer *http.Server
 
 func init() {
-	gin.SetMode(gin.ReleaseMode)
+	gin.SetMode(gin.DebugMode)
 
 	router := gin.Default()
 	router.Use(func(ctx *gin.Context) {

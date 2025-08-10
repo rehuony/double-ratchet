@@ -1012,7 +1012,6 @@ export default function ChatPage() {
 			}
 		} else {
 			if (ratchetState.sendchain.length !== ratchetState.recvchain.length) {
-				console.log("sender, ", await exportECKeyToPem(ratchetState.public_key));
 				const sharedSecret = await calcSharedSecret(
 					ratchetState.private_key,
 					ratchetState.public_key
