@@ -1,4 +1,4 @@
-## DoubleRatchetDemo
+## double-ratchet-chat
 
 > [!NOTE]
 >
